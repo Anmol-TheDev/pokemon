@@ -1,0 +1,406 @@
+.preloader{
+	display: flex;
+	background-color:white;
+	height:100dvh;
+	width:100vw;
+	position:fixed;
+	z-index: 100;
+	align-items: center;
+	justify-content:center;
+	bottom:0;
+}
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+	height: 60px;
+	aspect-ratio: 1;
+	position: relative;
+  }
+  .loader::before,
+  .loader::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	transform-origin: bottom;
+  }
+  .loader::after {
+	background:
+	  radial-gradient(at 75% 15%,#fffb,#0000 35%),
+	  radial-gradient(at 80% 40%,#0000,#0008),
+	  radial-gradient(circle  5px,#fff 94%,#0000),
+	  radial-gradient(circle 10px,#000 94%,#0000),
+	  linear-gradient(#F93318 0 0) top   /100% calc(50% - 5px),
+	  linear-gradient(#fff    0 0) bottom/100% calc(50% - 5px)
+	  #000;
+	background-repeat: no-repeat;
+	animation: l20 1s infinite cubic-bezier(0.5,120,0.5,-120);
+  }
+  .loader::before {
+	background:#ddd;
+	filter: blur(8px);
+	transform: scaleY(0.4) translate(-13px, 0px);
+  }
+  @keyframes l20 { 
+   30%,70% {transform:rotate(0deg)}
+   49.99%  {transform:rotate(0.2deg)}
+   50%     {transform:rotate(-0.2deg)}
+  }
+*{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  transition:open 1s linear 1s;
+  background-color:#F9F6EE;
+  transition: all 350ms linear;
+}
+
+.backbtn{
+	font-size:3.2rem;
+	margin:2rem;
+
+}
+.switch {
+    position: relative;
+    display:inline-block;
+    width: 3.8rem;
+    height: 34px;
+    margin:2.5rem;
+    
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.top{
+	display: flex;
+	justify-content:center;
+	gap:80vw;
+}
+.header{
+  display: flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.midsec{
+	margin:5rem 0 0 0;
+}
+.midsec h2{
+	
+	text-align: center;
+	font-size:3rem;
+	
+}
+.imgBox{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.Abilities{
+	display:flex;
+	justify-content:center;
+	flex-wrap:wrap;
+	gap:5vw;
+	
+}
+details{
+	border-radius:3px;
+	margin:10px;
+	
+}
+details p{
+	font-size:20px;
+	background-color:rgba(128, 128, 128, 0.395);
+	padding:10px;
+	border-radius:20px;
+}
+summary{
+	font-size:30px;
+	padding:10px;
+	font-weight:550;
+	
+	&:hover{
+		cursor: pointer;
+	}
+}
+
+summary::marker{
+	content:"😒 ";
+}
+details[open] summary::marker{
+	content: "😁 ";
+}
+details[open] p{
+	width:300px;
+}
+.poketype{
+  display:flex;
+  flex-direction: column;
+  width:20vw;
+  justify-content:center;
+  align-items:center;
+  gap:1.5rem;
+  font-weight:550;
+}
+
+.poketype p{
+	font-size:25px;
+	margin-left:-30px;
+}
+.span0{
+  display:inline-block;
+  font-size:30px;
+  width:8rem;
+  text-align:center;
+  border-radius:10px;
+}
+.span1{
+  display:inline-block;
+  font-size:30px;
+  width:8rem;
+  text-align:center;
+  border-radius:10px;
+}
+img{
+  width:30vw;
+}
+h1{
+  text-align: center;
+  font-size:100px;
+  font-family: "Pixelify Sans", sans-serif;
+}
+.poketype h3{
+	font-size:26px;
+}
+.imgfoot{
+	gap:5rem;
+	display: flex;
+	justify-content: space-between;
+}
+button{
+	border:none;
+	font-size:30px;
+}
+li{ 
+	list-style-type: none;
+}
+
+.skills{ 
+	width: 300px;
+	margin: 60px 3rem 0 0;
+	color: black;
+  
+}
+
+.skills li{
+	margin: 20px 0;
+}
+
+.bar{ 
+	background-color: #353b48;
+	display: block;
+	height: 7px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 3px;
+	overflow: hidden;
+	
+
+}
+
+.bar span{ 
+	height: 7px;
+	float: left;
+}
+
+.Hp{ 
+  background-color: lightgreen;
+	width: 90%;
+	animation: Hp 1.5s;
+}
+
+.Attack{ 
+  background-color:rgba(255, 0, 0, 0.715);
+	width: 93%;
+	animation: Attack 1.8s;
+}
+.specialAttack{
+  background-color: rgba(255, 0, 0, 0.715);
+  width:0;
+  animation: spattack 2.2s;
+}
+
+.Defense{ 
+  background-color:#2187e7b3;
+	width: 50%;
+	animation: Defense 2.5s;
+}
+
+.specialDefense{
+  background-color: #2187e7b3;
+  width:0;
+  animation: spdefense 1s;
+}
+.Speed{ 
+  background-color:yellow;
+	width: 30%;
+	animation: Speed 2.5s;
+}
+
+
+@keyframes Hp{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+
+@keyframes Attack{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+@keyframes spattack{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+
+
+@keyframes Defense{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+@keyframes spdefense{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+
+@keyframes Speed{ 
+	0%{
+		width: 0%;
+	}
+
+	100%{
+		width: 100%;
+	}
+}
+.dark{
+	background-color: #242a2d;
+	*{
+		background-color:#242a2d;
+		color:white;
+	}
+	.bar{
+		box-shadow: 0px 0px 20px 6px #2187e7b3;
+	}
+	.Hp{ 
+		background-color: lightgreen;
+		  
+	  }
+	  
+	  .Attack{ 
+		background-color:rgba(255, 0, 0, 0.715);
+		  
+	  }
+	  .specialAttack{
+		background-color: rgba(255, 0, 0, 0.715);
+		
+	  }
+	  
+	  .Defense{ 
+		background-color:#2187e7b3;
+		  
+	  }
+	  
+	  .specialDefense{
+		background-color: #2187e7b3;
+		
+	  }
+	  .Speed{ 
+		background-color:yellow;
+		  
+	  }
+}
+
+@media only screen and (max-width:600px) {
+	h1{
+		font-size:4rem;
+	}
+	.poketype h3{
+		font-size:20px;
+	}
+	.poketype{
+		width:50vw;
+	}
+	img{
+		width:50vw;
+	}
+	.header{
+		margin-top:2rem;
+	}
+	summary{
+		font-size:23px;
+	}
+	.Abilities {
+		margin-bottom:2rem;
+	}
+	.top{
+		gap: 30vw;
+
+	}
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="pokeidscript.js" defer></script>
+    <link rel="stylesheet" href="pokeidstyle.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="loader"></div>
+    </div>
+    <div class="top">
+      <button class="backbtn"><i class="fa-solid fa-arrow-left"></i></button>
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+     </label>
+    </div>
+    <h1 class="pokeName"></h1>
+    <div class="maindiv">
+      <div class="header">
+        <div class="poketype">
+          <h3 class="pokeweight">Weight :</h3>
+          <h3 class="pokeheight">Height :</h3>
+          <audio src=""></audio>
+        </div>
+        <div class="imgBox">
+          <img loading="lazy" src="" />
+          <div class="imgbutton">
+            <div class="imgfoot">
+              <button id="previous">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <button id="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills">
+          <li>
+            <h3 class="hpval">HP</h3>
+            <span class="bar"><span class="Hp"></span></span>
+          </li>
+
+          <li>
+            <h3 class="Attackval">Attack</h3>
+            <span class="bar"><span class="Attack"></span></span
+            ><!-- skill bar 2 -->
+          </li>
+          <li>
+            <h3 class="spattackval">Spcial Attack</h3>
+            <span class="bar"><span class="specialAttack"></span></span
+            ><!-- skill bar 2 -->
+          </li>
+
+          <li>
+            <h3 class="defenseval">Defense</h3>
+            <span class="bar"><span class="Defense"></span></span>
+          </li>
+          <li>
+            <h3 class="spdefenseval">Special Defense</h3>
+            <span class="bar"><span class="specialDefense"></span></span>
+          </li>
+
+          <li>
+            <h3 class="speedval">Speed</h3>
+            <span class="bar"><span class="Speed"></span></span>
+          </li>
+        </div>
+      </div>
+      <div class="midsec">
+        <h2>Abilities</h2>
+        <div class="Abilities"></div>
+      </div>
+    </div>
+  </body>
+</html>
