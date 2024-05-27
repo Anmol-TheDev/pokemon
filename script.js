@@ -1,6 +1,9 @@
 
-const array=[],data=[],url=[];
-let iValue=0;let length=20;
+const array = [],
+  data = [],
+  url = [];
+let iValue = 0;
+let length = 20;
 let a = document.getElementsByClassName("main-box");
 let container = document.createElement("div");
 a[0].appendChild(container);
@@ -8,31 +11,40 @@ container.setAttribute("class", "container");
 let uniqueName;
 let uniquebox;
 
-
-for(let i=0;i<100;i++){
-  array.push(await fetch(`https://pokeapi.co/api/v2/pokemon/${i+1}`))
-  const resp =await array[i]
-  data.push (await resp.json())
+//darkmode
+const toggle = document.getElementById("darkModeToggle");
+toggle.addEventListener("click", () => {
+  document.querySelector("body").classList.toggle("dark");
+});
+async function main(){
+for (let i =0; i <1025; i++) {
+  console.log(length);
+  console.log(iValue)
+  array.push(await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`));
+  const resp = await array[i];
+  data.push(await resp.json());
   if(i>=0&&i<20){
     domData(data[i])
   }
+ }
 }
 
- function dataprovider(){
-for(let i=iValue;i<length;i++){
-  uniquebox="name"+i;
-  domData(data[i])
-}
+main()
+async function dataprovider() {
+  for (let i = iValue; i < length; i++) {
+    uniquebox = "name" + i;
+    domData(data[i]);
+  }
 }
 
 // providing data to main page
 
- function domData(data){
+function domData(data) {
   let div = document.createElement("div");
   div.setAttribute("class", "box");
-  div.addEventListener("click",()=>{
-    window.location.assign("/pokeid.html?data="+data.id);
-  }) 
+  div.addEventListener("click", () => {
+    window.location.assign("/pokeid.html?data=" + data.id);
+  });
 
   let img = document.createElement("img");
   img.src = data.sprites.front_default;
@@ -52,7 +64,7 @@ for(let i=iValue;i<length;i++){
 
   // loop for pokemon type
   for (let j = 0; j < data.types.length; j++) {
-   const  type = document.createElement("span");
+    const type = document.createElement("span");
     type.innerHTML = data.types[j].type.name;
     divFoot.appendChild(type);
     type.setAttribute("id", uniqueName + j);
@@ -119,7 +131,7 @@ for(let i=iValue;i<length;i++){
   }
 }
 
-//function for moving on next page 
+//function for moving on next page
 function onnext() {
   if (iValue + 20 < data.length) {
     iValue += 20;
@@ -152,32 +164,494 @@ function onprevious() {
 document.getElementById("next").addEventListener("click", onnext);
 document.getElementById("previous").addEventListener("click", onprevious);
 
-const webName =document.querySelector('h1');
-webName.addEventListener("click",function(){
-    location.reload();
+const webName = document.querySelector("h1");
+webName.addEventListener("click", function () {
+  location.reload();
 });
-
-const toggle=document.getElementById("darkModeToggle");
-toggle.addEventListener("click",()=>{
-  document.querySelector("body").classList.toggle("dark");
-
-})
 
 //search bar
-const search = document.querySelector('.searchBar');
-search.addEventListener("input",(e)=> {
- const value = e.target.value;
- if(value==""){
- const element = document.querySelectorAll('.box');
- element.forEach(element => element.remove())
-  dataprovider()
- }
- else{
-   const element = document.querySelectorAll('.box');
-   element.forEach(element => element.remove())
- data.forEach((el)=>{
-  if(el.name.includes(value.trim().toLowerCase()))
-    domData(el)
- })
+const search = document.querySelector(".searchBar");
+const result = document.querySelector(".resultbox");
+
+search.onkeyup = function () {
+  let resultdata = [];
+  let input = search.value;
+  if (input.length) {
+    resultdata = pokemonNames.filter((el) => {
+      return el.includes(input.trim().toLowerCase());
+    });
+    
+  }
+  display(resultdata);
+  if (!resultdata.length) {
+    result.innerHTML = "";
+    ul.innerHTML=""
+  }
+  if(search.value==""){
+    document.querySelector(".container").remove();
+    let container = document.createElement("div");
+    container.setAttribute("class", "container");
+    a[0].appendChild(container);
+    dataprovider()
+  }
+};
+
+const ul = document.createElement("ul");
+let li = document.createElement("li");
+function display(resultdata) {
+  resultdata.map((list) => {
+    li.innerHTML = list;
+    
+  });
+  ul.appendChild(li)
+  result.appendChild(ul);
+  li.addEventListener("click",selectInput);
 }
-});
+function selectInput() {
+  
+  search.value = li.innerHTML;
+  result.innerHTML = "";
+  fetching(li.innerHTML)
+}
+
+function fetching(el){
+  document.querySelectorAll('.box').forEach(el=>{
+    el.remove();
+  })
+  fetch(`https://pokeapi.co/api/v2/pokemon/${el}`)
+  .then(res=>res.json())
+  .then(obj=>domData(obj))
+}
+
+
+const pokemonNames = [
+  "bulbasaur",
+  "ivysaur",
+  "venusaur",
+  "charmander",
+  "charmeleon",
+  "charizard",
+  "squirtle",
+  "wartortle",
+  "blastoise",
+  "caterpie",
+  "metapod",
+  "butterfree",
+  "weedle",
+  "kakuna",
+  "beedrill",
+  "pidgey",
+  "pidgeotto",
+  "pidgeot",
+  "rattata",
+  "raticate",
+  "spearow",
+  "fearow",
+  "ekans",
+  "arbok",
+  "pikachu",
+  "raichu",
+  "sandshrew",
+  "sandslash",
+  "nidoran♀",
+  "nidorina",
+  "nidoqueen",
+  "nidoran♂",
+  "nidorino",
+  "nidoking",
+  "clefairy",
+  "clefable",
+  "vulpix",
+  "ninetales",
+  "jigglypuff",
+  "wigglytuff",
+  "zubat",
+  "golbat",
+  "oddish",
+  "gloom",
+  "vileplume",
+  "paras",
+  "parasect",
+  "venonat",
+  "venomoth",
+  "diglett",
+  "dugtrio",
+  "meowth",
+  "persian",
+  "psyduck",
+  "golduck",
+  "mankey",
+  "primeape",
+  "growlithe",
+  "arcanine",
+  "poliwag",
+  "poliwhirl",
+  "poliwrath",
+  "abra",
+  "kadabra",
+  "alakazam",
+  "machop",
+  "machoke",
+  "machamp",
+  "bellsprout",
+  "weepinbell",
+  "victreebel",
+  "tentacool",
+  "tentacruel",
+  "geodude",
+  "graveler",
+  "golem",
+  "ponyta",
+  "rapidash",
+  "slowpoke",
+  "slowbro",
+  "magnemite",
+  "magneton",
+  "farfetch'd",
+  "doduo",
+  "dodrio",
+  "seel",
+  "dewgong",
+  "grimer",
+  "muk",
+  "shellder",
+  "cloyster",
+  "gastly",
+  "haunter",
+  "gengar",
+  "onix",
+  "drowzee",
+  "hypno",
+  "krabby",
+  "kingler",
+  "voltorb",
+  "electrode",
+  "exeggcute",
+  "exeggutor",
+  "cubone",
+  "marowak",
+  "hitmonlee",
+  "hitmonchan",
+  "lickitung",
+  "koffing",
+  "weezing",
+  "rhyhorn",
+  "rhydon",
+  "chansey",
+  "tangela",
+  "kangaskhan",
+  "horsea",
+  "seadra",
+  "goldeen",
+  "seaking",
+  "staryu",
+  "starmie",
+  "mr. mime",
+  "scyther",
+  "jynx",
+  "electabuzz",
+  "magmar",
+  "pinsir",
+  "tauros",
+  "magikarp",
+  "gyarados",
+  "lapras",
+  "ditto",
+  "eevee",
+  "vaporeon",
+  "jolteon",
+  "flareon",
+  "porygon",
+  "omanyte",
+  "omastar",
+  "kabuto",
+  "kabutops",
+  "aerodactyl",
+  "snorlax",
+  "articuno",
+  "zapdos",
+  "moltres",
+  "dratini",
+  "dragonair",
+  "dragonite",
+  "mewtwo",
+  "mew",
+  "chikorita",
+  "bayleef",
+  "meganium",
+  "cyndaquil",
+  "quilava",
+  "typhlosion",
+  "totodile",
+  "croconaw",
+  "feraligatr",
+  "sentret",
+  "furret",
+  "hoothoot",
+  "noctowl",
+  "ledyba",
+  "ledian",
+  "spinarak",
+  "ariados",
+  "crobat",
+  "chinchou",
+  "lanturn",
+  "pichu",
+  "cleffa",
+  "igglybuff",
+  "togepi",
+  "togetic",
+  "natu",
+  "xatu",
+  "mareep",
+  "flaaffy",
+  "ampharos",
+  "bellossom",
+  "marill",
+  "azumarill",
+  "sudowoodo",
+  "politoed",
+  "hoppip",
+  "skiploom",
+  "jumpluff",
+  "aipom",
+  "sunkern",
+  "sunflora",
+  "yanma",
+  "wooper",
+  "quagsire",
+  "espeon",
+  "umbreon",
+  "murkrow",
+  "slowking",
+  "misdreavus",
+  "unown",
+  "wobbuffet",
+  "girafarig",
+  "pineco",
+  "forretress",
+  "dunsparce",
+  "gligar",
+  "steelix",
+  "snubbull",
+  "granbull",
+  "qwilfish",
+  "scizor",
+  "shuckle",
+  "heracross",
+  "sneasel",
+  "teddiursa",
+  "ursaring",
+  "slugma",
+  "magcargo",
+  "swinub",
+  "piloswine",
+  "corsola",
+  "remoraid",
+  "octillery",
+  "delibird",
+  "mantine",
+  "skarmory",
+  "houndour",
+  "houndoom",
+  "kingdra",
+  "phanpy",
+  "donphan",
+  "porygon2",
+  "stantler",
+  "smeargle",
+  "tyrogue",
+  "hitmontop",
+  "smoochum",
+  "elekid",
+  "magby",
+  "miltank",
+  "blissey",
+  "raikou",
+  "entei",
+  "suicune",
+  "larvitar",
+  "pupitar",
+  "tyranitar",
+  "lugia",
+  "ho-oh",
+  "celebi",
+  "treecko",
+  "grovyle",
+  "sceptile",
+  "torchic",
+  "combusken",
+  "blaziken",
+  "mudkip",
+  "marshtomp",
+  "swampert",
+  "poochyena",
+  "mightyena",
+  "zigzagoon",
+  "linoone",
+  "wurmple",
+  "silcoon",
+  "beautifly",
+  "cascoon",
+  "dustox",
+  "lotad",
+  "lombre",
+  "ludicolo",
+  "seedot",
+  "nuzleaf",
+  "shiftry",
+  "taillow",
+  "swellow",
+  "wingull",
+  "pelipper",
+  "ralts",
+  "kirlia",
+  "gardevoir",
+  "surskit",
+  "masquerain",
+  "shroomish",
+  "breloom",
+  "slakoth",
+  "vigoroth",
+  "slaking",
+  "nincada",
+  "ninjask",
+  "shedinja",
+  "whismur",
+  "loudred",
+  "exploud",
+  "makuhita",
+  "hariyama",
+  "azurill",
+  "nosepass",
+  "skitty",
+  "delcatty",
+  "sableye",
+  "mawile",
+  "aron",
+  "lairon",
+  "aggron",
+  "meditite",
+  "medicham",
+  "electrike",
+  "manectric",
+  "plusle",
+  "minun",
+  "volbeat",
+  "illumise",
+  "roselia",
+  "gulpin",
+  "swalot",
+  "carvanha",
+  "sharpedo",
+  "wailmer",
+  "wailord",
+  "numel",
+  "camerupt",
+  "torkoal",
+  "spoink",
+  "grumpig",
+  "spinda",
+  "trapinch",
+  "vibrava",
+  "flygon",
+  "cacnea",
+  "cacturne",
+  "swablu",
+  "altaria",
+  "zangoose",
+  "seviper",
+  "lunatone",
+  "solrock",
+  "barboach",
+  "whiscash",
+  "corphish",
+  "crawdaunt",
+  "baltoy",
+  "claydol",
+  "lileep",
+  "cradily",
+  "anorith",
+  "armaldo",
+  "feebas",
+  "milotic",
+  "castform",
+  "kecleon",
+  "shuppet",
+  "banette",
+  "duskull",
+  "dusclops",
+  "tropius",
+  "chimecho",
+  "absol",
+  "wynaut",
+  "snorunt",
+  "glalie",
+  "spheal",
+  "sealeo",
+  "walrein",
+  "clamperl",
+  "huntail",
+  "gorebyss",
+  "relicanth",
+  "luvdisc",
+  "bagon",
+  "shelgon",
+  "salamence",
+  "beldum",
+  "metang",
+  "metagross",
+  "regirock",
+  "regice",
+  "registeel",
+  "latias",
+  "latios",
+  "kyogre",
+  "groudon",
+  "rayquaza",
+  "jirachi",
+  "deoxys",
+  "turtwig",
+  "grotle",
+  "torterra",
+  "chimchar",
+  "monferno",
+  "infernape",
+  "piplup",
+  "prinplup",
+  "empoleon",
+  "starly",
+  "staravia",
+  "staraptor",
+  "bidoof",
+  "bibarel",
+  "kricketot",
+  "kricketune",
+  "shinx",
+  "luxio",
+  "luxray",
+  "budew",
+  "roserade",
+  "cranidos",
+  "rampardos",
+  "shieldon",
+  "bastiodon",
+  "burmy",
+  "wormadam",
+  "mothim",
+  "combee",
+  "vespiquen",
+  "pachirisu",
+  "buizel",
+  "floatzel",
+  "cherubi",
+  "cherrim",
+  "shellos",
+  "gastrodon",
+  "ambipom",
+  "drifloon",
+  "drifblim",
+  "buneary",
+  "lopunny",
+  "mismagius",
+];

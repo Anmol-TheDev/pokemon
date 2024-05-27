@@ -131,6 +131,7 @@ function display(output) {
         break;
     }
   }
+  
   //for alilitey
   for (let j = 0; j < output.abilities.length; j++) {
     fetch(output.abilities[j].ability.url)
