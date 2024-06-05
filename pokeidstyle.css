@@ -401,13 +401,17 @@ li{
 	}
 	
 	.top{
-		gap: 30vw;
+		gap:9rem;
 
 	}
 	.midsec{
 		min-height:20vh;
 	}
 	.skills{
+		
 		margin:0;
+	}
+	.switch{
+		
 	}
 }
