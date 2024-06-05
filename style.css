@@ -10,6 +10,9 @@
     gap:2rem;
    background-color:#F9F6EE;
  }
+ html{
+    scroll-behavior: smooth;
+ }
  .top  {
     display:flex;
     justify-content:space-between;
@@ -164,7 +167,7 @@ button{
     display:inline-block;
     width: 47px;
     height: 34px;
-    margin-top:1.4rem;
+    margin-top:1.8rem;
     
 }
 
@@ -205,6 +208,31 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+footer{
+    box-shadow: rgba(0, 0, 0, 0.45) 1px 1px 40px 0px inset;
+}
+footer h3{
+    font-size:1.7rem;
+    margin:10px;
+}
+  footer div{
+    font-size:2.5rem;
+    display: flex;
+    justify-content: center;
+    gap:3rem;
+    padding:2.5rem;
+    
+  }
+  footer i{
+    color:black;
+   &:hover{
+    color:#2196F3
+   }
+  }
+  
+
+  
 .dark{
     /* background-color:rgba(0, 0, 0, 0.866); */
     p{
@@ -227,10 +255,18 @@ input:checked + .slider:before {
      .box:hover{
         box-shadow: 0px 0px 30px 10px #8ecccc;
      }
-     p{
-        background-color: rgb(133, 0, 0);
+        p{
+            background-color: rgb(133, 0, 0);
+        }
+     footer{
+        color:white;
      }
-     
+     footer i{
+        color: white;
+        &:hover{
+            color:rgb(133, 0, 0);
+        }
+     }
 }
 
 @media  only screen and (max-width :900px) {
@@ -303,7 +339,7 @@ input:checked + .slider:before {
 
     input{
         width:70vw;
-        margin-left:1.5rem;
+        margin-left:0.5rem;
     }
     .resultbox ul{
         width:70vw;
@@ -332,6 +368,9 @@ input:checked + .slider:before {
         gap:0.5rem;
      
         
+    }
+    footer div{
+        padding:1.5rem;
     }
     
 }
