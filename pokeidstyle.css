@@ -49,7 +49,7 @@
 *{
   margin:0;
   padding:0;
-  font-family: sans-serif;
+  font-family: "Mukta", sans-serif;
   transition:open 1s linear 1s;
   background-color:#F9F6EE;
   transition: all 350ms linear;
@@ -110,6 +110,7 @@ input:checked + .slider:before {
 	display: flex;
 	justify-content:center;
 	gap:80vw;
+	height:10vh;
 }
 .header{
   display: flex;
@@ -197,6 +198,7 @@ details[open] p{
 }
 img{
   width:30vw;
+  height:40vh;
 }
 h1{
   text-align: center;
@@ -340,9 +342,9 @@ li{
 	}
 }
 .dark{
-	background-color: #242a2d;
+	background-color: #222831;
 	*{
-		background-color:#242a2d;
+		background-color:#222831;
 		color:white;
 	}
 	.bar{
@@ -378,8 +380,9 @@ li{
 }
 
 @media only screen and (max-width:600px) {
+	
 	h1{
-		font-size:4rem;
+		font-size:3.8rem;
 	}
 	.poketype h3{
 		font-size:20px;
@@ -396,11 +399,15 @@ li{
 	summary{
 		font-size:23px;
 	}
-	.Abilities {
-		margin-bottom:2rem;
-	}
+	
 	.top{
 		gap: 30vw;
 
+	}
+	.midsec{
+		min-height:20vh;
+	}
+	.skills{
+		margin:0;
 	}
 }

@@ -6,15 +6,18 @@ fetch(`https://pokeapi.co/api/v2/pokemon/` + id)
   .then((data) => display(data));
 
 function display(output) {
+  console.log(output)
   const button=document.querySelectorAll('button')
   console.log(button)
   document.getElementById("next").addEventListener("click", nextImage);
   document.getElementById("previous").addEventListener("click", prevImage);
+  
   const imgurl = [
-    output.sprites.front_default,
-    output.sprites.back_default,
-    output.sprites.back_shiny,
-    output.sprites.front_shiny,
+    output.sprites.other['official-artwork'].front_default,
+    output.sprites.other['official-artwork'].front_shiny,
+    output.sprites.other['home'].front_default,
+    output.sprites.other['home'].front_shiny,
+    
   ];
 
   let index = 0;
@@ -34,7 +37,7 @@ function display(output) {
   document.querySelector("h1").innerHTML = output.name;
   document.querySelector(".pokeweight").innerHTML += output.weight + " KG";
   document.querySelector(".pokeheight").innerHTML += output.height + " M";
-  document.querySelector("img").src = output.sprites.front_default;
+  document.querySelector("img").src = output.sprites.other['official-artwork'].front_default;
   document.querySelector(".Hp").style.width =
     (output.stats[0].base_stat / 200) * 100 + "%";
   document.querySelector(".hpval").innerHTML +=
@@ -72,10 +75,6 @@ function display(output) {
         break;
       case "fire":
         type.style.backgroundColor = "#EE8130";
-        document.querySelector('body').style.backgroundColor="#EE8130"
-        button.forEach(el=>{
-            el.style.backgroundcolor="#EE8130"
-        })
         break;
       case "water":
         type.style.backgroundColor = "#6390F0";

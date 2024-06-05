@@ -18,8 +18,6 @@ toggle.addEventListener("click", () => {
 });
 async function main(){
 for (let i =0; i <1025; i++) {
-  console.log(length);
-  console.log(iValue)
   array.push(await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`));
   const resp = await array[i];
   data.push(await resp.json());
@@ -47,7 +45,7 @@ function domData(data) {
   });
 
   let img = document.createElement("img");
-  img.src = data.sprites.front_default;
+  img.src = data.sprites.other['official-artwork'].front_default;
   let p = document.createElement("p");
   let name = document.createElement("h2");
   name.setAttribute("class", "name");
@@ -173,45 +171,46 @@ webName.addEventListener("click", function () {
 const search = document.querySelector(".searchBar");
 const result = document.querySelector(".resultbox");
 
+let resultdata = [];
 search.onkeyup = function () {
-  let resultdata = [];
   let input = search.value;
   if (input.length) {
-    resultdata = pokemonNames.filter((el) => {
-      return el.includes(input.trim().toLowerCase());
+    resultdata= pokemonNames.filter((el) => {
+      return (el.startsWith(input.trim().toLowerCase()));
     });
     
   }
+
   display(resultdata);
-  if (!resultdata.length) {
-    result.innerHTML = "";
-    ul.innerHTML=""
-  }
+
   if(search.value==""){
+    result.innerHTML=""
     document.querySelector(".container").remove();
     let container = document.createElement("div");
     container.setAttribute("class", "container");
     a[0].appendChild(container);
     dataprovider()
   }
-};
+}
 
 const ul = document.createElement("ul");
-let li = document.createElement("li");
-function display(resultdata) {
-  resultdata.map((list) => {
-    li.innerHTML = list;
-    
-  });
-  ul.appendChild(li)
+function display(resultdata){
+  let li = "";
+  ul.innerHTML=""
+  for(let i=0;i<resultdata.length;i++){
+    li=document.createElement("li");
+    li.innerHTML = resultdata[i];
+    ul.appendChild(li)
+    li.addEventListener("click",selectInput);
+  }
   result.appendChild(ul);
-  li.addEventListener("click",selectInput);
 }
-function selectInput() {
+
+function selectInput(e) {
   
-  search.value = li.innerHTML;
+  search.value = e.target.innerHTML;
   result.innerHTML = "";
-  fetching(li.innerHTML)
+  fetching(e.target.innerHTML)
 }
 
 function fetching(el){
@@ -222,7 +221,6 @@ function fetching(el){
   .then(res=>res.json())
   .then(obj=>domData(obj))
 }
-
 
 const pokemonNames = [
   "bulbasaur",
@@ -457,6 +455,7 @@ const pokemonNames = [
   "kingdra",
   "phanpy",
   "donphan",
+  "garchomp",
   "porygon2",
   "stantler",
   "smeargle",
