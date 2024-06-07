@@ -106,6 +106,9 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+body{
+	width:100vw;
+}
 .top{
 	display: flex;
 	justify-content:center;

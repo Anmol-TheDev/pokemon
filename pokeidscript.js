@@ -157,7 +157,10 @@ document.querySelector('.backbtn').addEventListener("click",()=>{
 const preloader=document.querySelector('.preloader');
 
 window.addEventListener("load",function(){
-  preloader.style.display="none"
+  setTimeout( function(){
+ preloader.style.display="none"
+  },(3000))
+  
 })
 const toggle=document.getElementById("darkModeToggle");
 toggle.addEventListener("click",()=>{

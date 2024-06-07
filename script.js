@@ -1,5 +1,5 @@
 
-const array = [],
+ const array = [],
   data = [],
   url = [];
 let iValue = 0;
@@ -10,12 +10,12 @@ a[0].appendChild(container);
 container.setAttribute("class", "container");
 let uniqueName;
 let uniquebox;
-
 //darkmode
 const toggle = document.getElementById("darkModeToggle");
 toggle.addEventListener("click", () => {
   document.querySelector("body").classList.toggle("dark");
 });
+
 async function main(){
 for (let i =0; i <1025; i++) {
   array.push(await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`));
@@ -41,11 +41,14 @@ function domData(data) {
   let div = document.createElement("div");
   div.setAttribute("class", "box");
   div.addEventListener("click", () => {
+    
     window.location.assign("/pokeid.html?data=" + data.id);
+      
   });
 
   let img = document.createElement("img");
   img.src = data.sprites.other['official-artwork'].front_default;
+  img.loading="lazy"
   let p = document.createElement("p");
   let name = document.createElement("h2");
   name.setAttribute("class", "name");
@@ -188,14 +191,18 @@ webName.addEventListener("click", function () {
 const search = document.querySelector(".searchBar");
 search.addEventListener('keypress',(e)=>{
   if(e.key==='Enter'){
+     result.innerHTM=""
+     console.log(result)
     e.preventDefault();
-    fetching(e.target.value)
+    fetching(e.target.value.trim().toLowerCase())
   }
 })
+
 const result = document.querySelector(".resultbox");
 
 let resultdata = [];
 search.onkeyup = function () {
+  console.log("ho gya call")
   document.querySelector('.footer').style.display="none"
   let input = search.value;
   if (input.length) {
@@ -242,7 +249,7 @@ function fetching(el){
   document.querySelector('footer').style.display="none"
   document.querySelectorAll('.box').forEach(el=>{
     el.remove();
-  })
+    })
   fetch(`https://pokeapi.co/api/v2/pokemon/${el}`)
   .then(res=>res.json())
   .then(obj=>domData(obj))
