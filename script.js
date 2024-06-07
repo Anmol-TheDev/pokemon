@@ -154,6 +154,7 @@ function onnext() {
 
 function onprevious() {
   if (iValue > 0) {
+    console.log(iValue)
     iValue -= 20;
     length -= 20;
     document.querySelector(".container").remove();
@@ -162,10 +163,16 @@ function onprevious() {
     a[0].appendChild(container);
     dataprovider();
     scrollTo(0,0)
+
+    if(iValue<20){
+      document.querySelector('#previous').style.display="none"
+    }
+    else{
+      document.querySelector('#previous').style.display="block"
+    }
+    
   } 
-  if(iValue=>0&&iValue<=20){
-    document.querySelector('#previous').style.display="none"
-  }
+  
 }
 
 // Adding event listeners for navigation
@@ -179,6 +186,12 @@ webName.addEventListener("click", function () {
 
 //search bar
 const search = document.querySelector(".searchBar");
+search.addEventListener('keypress',(e)=>{
+  if(e.key==='Enter'){
+    e.preventDefault();
+    fetching(e.target.value)
+  }
+})
 const result = document.querySelector(".resultbox");
 
 let resultdata = [];
@@ -201,6 +214,7 @@ search.onkeyup = function () {
     container.setAttribute("class", "container");
     a[0].appendChild(container);
     document.querySelector('.footer').style.display="flex"
+    document.querySelector('footer').style.display='flex' 
     dataprovider()
   }
 }
@@ -225,6 +239,7 @@ function selectInput(e) {
 }
 
 function fetching(el){
+  document.querySelector('footer').style.display="none"
   document.querySelectorAll('.box').forEach(el=>{
     el.remove();
   })
