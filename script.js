@@ -11,18 +11,25 @@ container.setAttribute("class", "container");
 let uniqueName;
 let uniquebox;
 //darkmode
-const toggle = document.getElementById("darkModeToggle");
-toggle.addEventListener("click", () => {
-  document.querySelector("body").classList.toggle("dark");
-});
+// const toggle = document.getElementById("darkModeToggle");
+// toggle.addEventListener("click", () => {
+//   document.querySelector("body").classList.toggle("dark");
+// });
 
 async function main(){
 for (let i =0; i <1025; i++) {
   array.push(await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`));
   const resp = await array[i];
   data.push(await resp.json());
-  if(i>=0&&i<20){
-    domData(data[i])
+  // if(i>=0&&i<20){
+  //   domData(data[i])
+  // }  
+  if(i==length-1){
+    document.querySelector('.preloader').style.display="none";
+    data.forEach((el)=>{
+      domData(el);
+
+    })
   }
  }
 }
@@ -31,8 +38,9 @@ main()
 async function dataprovider() {
   for (let i = iValue; i < length; i++) {
     uniquebox = "name" + i;
-    domData(data[i]);
+    domData(data[i])
   }
+  
 }
 
 // providing data to main page

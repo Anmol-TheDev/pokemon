@@ -162,8 +162,4 @@ window.addEventListener("load",function(){
   },(3000))
   
 })
-const toggle=document.getElementById("darkModeToggle");
-toggle.addEventListener("click",()=>{
-  document.querySelector("body").classList.toggle("dark");
-  
-})
+
