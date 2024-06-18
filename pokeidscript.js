@@ -6,12 +6,10 @@ fetch(`https://pokeapi.co/api/v2/pokemon/` + id)
   .then((data) => display(data));
 
 function display(output) {
-  console.log(output)
-  const button=document.querySelectorAll('button')
-  console.log(button)
   document.getElementById("next").addEventListener("click", nextImage);
   document.getElementById("previous").addEventListener("click", prevImage);
-  
+
+  //img arr
   const imgurl = [
     output.sprites.other['official-artwork'].front_default,
     output.sprites.other['official-artwork'].front_shiny,
@@ -24,12 +22,12 @@ function display(output) {
   function updateImage() {
     document.querySelector("img").src = imgurl[index];
   }
-
+// next btn for img
   function nextImage() {
     index = (index + 1) % imgurl.length;
     updateImage();
   }
-
+// prev btn for img
   function prevImage() {
     index = (index - 1 + imgurl.length) % imgurl.length;
     updateImage();
@@ -62,13 +60,15 @@ function display(output) {
     (output.stats[5].base_stat / 200) * 100 + "%";
   document.querySelector(".speedval").innerHTML +=
     " : " + output.stats[5].base_stat;
-  //for showing type
+  //for showing types
   for (j = 0; j < output.types.length; j++) {
     type = document.createElement("span");
     type.innerHTML = output.types[j].type.name;
     type.setAttribute("class", "span" + j);
     type.style.border="1px solid white"
-    document.querySelector(".poketype").appendChild(type);
+    document.querySelector(".type").appendChild(type);
+
+    //for type element background
     switch (type.innerHTML) {
       case "normal":
         type.style.backgroundColor = "#A8A77A";
@@ -138,6 +138,13 @@ function display(output) {
       .then((output) => {
         const detail = document.createElement("details");
         const abiname = document.createElement("summary");
+
+        //function for on and off ability animation 
+        abiname.addEventListener("click",()=>{
+          abiname.classList.toggle("pulse-animation")
+         })
+
+          //ability detail
         abiname.innerHTML = output.name;
         detail.appendChild(abiname);
         document.querySelector(".Abilities").appendChild(detail);
@@ -151,11 +158,14 @@ function display(output) {
   }
 }
 
+//back btn
 document.querySelector('.backbtn').addEventListener("click",()=>{
   history.back();
 })
 const preloader=document.querySelector('.preloader');
 
+
+//preloader
 window.addEventListener("load",function(){
   setTimeout( function(){
  preloader.style.display="none"

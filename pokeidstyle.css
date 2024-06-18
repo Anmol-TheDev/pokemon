@@ -45,25 +45,19 @@
    50%     {transform:rotate(-0.2deg)}
   }
 *{
-  box-sizing: border-box;
   margin:0;
   padding:0;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
   font-family: "Mukta", sans-serif;
-  background-color:#282828;
   transition: all 350ms linear;
   color:#cfdfef;
 }
 
 .backbtn{
 	font-size:3.2rem;
-
 }
 
 body{
+	background-color: #282828;
 	max-width:100vw;
 	overflow-x:none;
 }
@@ -74,9 +68,13 @@ body{
   display: flex;
   justify-content:space-evenly;
   flex-wrap:wrap;
+  gap:3rem;
 }
 .midsec{
-	margin:5rem 0 0 0;
+	margin-top:2rem;
+	display: flex;
+	flex-direction:column;
+	gap:2rem;
 }
 .midsec h2{
 	
@@ -91,35 +89,56 @@ align-items: center;
 }
 .Abilities{
 	display:flex;
-	justify-content:center;
+	justify-content:space-evenly;
 	flex-wrap:wrap;
 	
 }
 
 details{
 	border-radius:3px;
-	margin:10px;
+	/* margin:10px; */
 	
 }
 details p{
 	font-size:20px;
 	background-color:rgba(128, 128, 128, 0.395);
 	padding:10px;
-	border-radius:20px;
+	border-radius:0 20px 20px 20px;
+	max-height:150px;
+	overflow-y:scroll;
+	scrollbar-width:none;
+	&::selection{
+		color:black;
+		background-color:#ffe62d97;
+	}
 }
+
 summary{
+	position: relative;
+	border-radius:10px;
 	font-size:30px;
 	padding:10px;
 	font-weight:550;
-	
+	box-shadow: 0 0 0 0 #ffe62d;
+	animation: pulse 1.5s infinite cubic-bezier(0.66, 0, 0, 0.8);
 	&:hover{
 		cursor: pointer;
 	}
+}
+.pulse-animation{
+	animation:none;
+}
+
+@keyframes pulse {to {box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);}}
+
+summary:hover{
+	animation:none;
 }
 
 summary::marker{
 	content:"😒 ";
 }
+
 details[open] summary::marker{
 	content: "😁 ";
 }
@@ -134,7 +153,10 @@ details[open] p{
   gap:1.5rem;
   font-weight:550;
 }
-
+.type{
+	display: flex;
+	gap:1rem;
+}
 .poketype p{
 	font-size:25px;
 }
@@ -170,6 +192,7 @@ h1{
 	justify-content: space-between;
 }
 button{
+	background-color: #282828;
 	border:none;
 	font-size:27px;
 }
@@ -215,6 +238,7 @@ li{
   background-color:rgba(255, 0, 0, 0.715);
 	animation: Attack 1.8s;
 }
+
 .specialAttack{
   background-color: rgba(255, 0, 0, 0.715);
   animation: spattack 2.2s;
@@ -229,6 +253,7 @@ li{
   background-color: #2187e7b3;
   animation: spdefense 1s;
 }
+
 .Speed{ 
   background-color:yellow;
 	animation: Speed 2.5s;
@@ -294,6 +319,50 @@ li{
 	}
 }
 
+footer{
+	margin-top:1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.45) 1px 2px 50px 0px inset;
+}
+
+  footer div{
+    font-size:3rem;
+    display: flex;
+    justify-content: center;
+    gap:3rem;
+    padding:2.5rem;
+    
+  }
+
+ #discord{
+    transition:all 100ms linear;
+     border-radius:35%;
+     &:hover{
+        background-color: black ;
+      color: #7289da;
+    box-shadow: 0px 0px 30px 10px #8b8b8b;
+  }
+}
+#email{
+    text-align: center;
+    transition:all 100ms linear;
+    height:50px;
+    width:60px;
+    border-radius:15%;
+     &:hover{
+        color:white;
+        background-color: #880808;
+    box-shadow: 0px 0px 30px 10px #8b8b8b;
+  }
+}
+#git{
+    transition:all 100ms linear;
+    border-radius:50%;
+     &:hover{
+        color:white;
+        background-color:black;
+    box-shadow: 0px 0px 30px 10px #8b8b8b;
+  }
+} 
 @media only screen and (max-width:600px) {
 	
 	h1{
@@ -303,18 +372,21 @@ li{
 		font-size:20px;
 	}
 	.poketype{
-		flex-wrap:nowrap;
+		flex-wrap:wrap;
+		flex-direction:row;
 	}
-	img{
+	/* img{
 		width:50vw;
-	}
+	} */
 	.header{
 		margin-top:2rem;
 	}
 	summary{
 		font-size:23px;
 	}
-	
+	.Abilities{
+		gap:2rem;
+	}
 	.top{
 		padding:1rem;
 

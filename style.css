@@ -1,3 +1,6 @@
+/* @import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css"; */
+
 .preloader{
 	display: flex;
 	background-color:#282828;
@@ -147,6 +150,9 @@ input{
    transform: scale(1.1);
    background-color: #2d3335;
    box-shadow: 0px 0px 30px 10px #8b8b8b;
+   img{
+    scale:1.2;
+   }
 }
 .header{
     padding:0;
@@ -200,8 +206,7 @@ span {
 img{
     width:auto;
     height:200px;
-    border-bottom:1px solid black;
-    
+
 }
 .boxFoot{
     display: flex;
